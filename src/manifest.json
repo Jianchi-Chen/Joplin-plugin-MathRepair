@@ -1,0 +1,16 @@
+{
+	"manifest_version": 1,
+	"id": "io.github.Jianchi-Chen.math-repair",
+	"app_min_version": "3.5",
+	"version": "1.0.0",
+	"name": "Math Repair",
+	"description": "A plugin to fix and refine math formula rendering issues in Joplin&#39;s Markdown editor.",
+	"author": "Jianchi-Chen",
+	"homepage_url": "https://github.com/Jianchi-Chen/Joplin-plugin-MathRepair",
+	"repository_url": "https://github.com/Jianchi-Chen/Joplin-plugin-MathRepair",
+	"keywords": [],
+	"categories": [],
+	"screenshots": [],
+	"icons": {},
+	"promo_tile": {}
+}
