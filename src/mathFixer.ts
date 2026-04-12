@@ -61,9 +61,17 @@ export function fix_math_MD(md: string): string {
     });
 
     // 3) 统一已有的 $$ ... $$ 块，确保内部也完成命令去转义
-    result = result.replace(/\$\$([\s\S]*?)\$\$/g, (_, expr) => {
+    result = result.replace(/\$\$([\s\S]*?)\$\$/g, (match, expr) => {
+        // 如果 expr 只是空白或只包含 $$，则移除它（处理相邻 $$ 的情况）
+        const trimmed = expr.trim();
+        if (!trimmed || trimmed === "$$") {
+            return "";
+        }
         return wrapDisplay(expr);
     });
+
+    // 3.5) 清理剩余的相邻美元符号行
+    result = result.replace(/\$\$\s*\n\s*\$\$/g, "$$");
 
     // 3b) 列表中的数学项：- (...) 或 - 含美元数学，统一成引用列表 >-
     result = result.replace(/^\s*-\s*(.+)$/gm, (_, content) => {

@@ -63,4 +63,16 @@ P\mathbf{a} = \text{a 在 b 上的投影}
             ["$$", String.raw`P\mathbf{a} = \text{a 在 b 上的投影}`, "$$", ""].join("\n"),
         );
     });
+
+    it("removes double dollar signs (adjacent $$ lines)", () => {
+        const input = `$$
+$$
+\\frac{\\partial z}{\\partial x} = 2x
+$$
+$$`;
+        const out = fix_math_MD(input);
+        // Should not have adjacent $$ lines
+        expect(out).not.toContain("$$\n$$");
+        expect(out).toContain("\\frac{\\partial z}{\\partial x} = 2x");
+    });
 });
